@@ -26,82 +26,94 @@ body {
     color: var(--text-color);
 }
 
-/* Navbar stillar */
-.project-nav {
+/* Projects sahifasi uchun header va navigatsiya */
+.header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     padding: 2rem 9%;
-    background: rgba(31, 36, 45, 0.9);
-    backdrop-filter: blur(10px);
+    background: transparent;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-    border-bottom: .1rem solid rgba(0, 238, 255, 0.2);
 }
 
-.project-logo {
+.logo {
     font-size: 2.5rem;
-    color: var(--text-color);
+    color: #fff;
     font-weight: 600;
     cursor: pointer;
+    text-decoration: none;
 }
 
-.project-logo:hover {
-    color: var(--main-color);
-}
-
-.project-menu {
+.nav {
     display: flex;
-    gap: 3.5rem;
+    gap: 2.5rem;
 }
 
-.project-menu a {
+.nav a {
     font-size: 1.7rem;
-    color: var(--text-color);
+    color: #fff;
     font-weight: 500;
-    transition: .3s;
-    position: relative;
-}
-
-.project-menu a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 100%;
-    height: .2rem;
-    background: var(--main-color);
-    border-radius: 5px;
-    transform: scaleX(0);
+    text-decoration: none;
     transition: .3s;
 }
 
-.project-menu a:hover::after {
-    transform: scaleX(1);
-}
-
-.project-menu a:hover,
-.project-menu a.active {
+.nav a:hover,
+.nav a.active {
     color: var(--main-color);
 }
 
-.project-menu a.active::after {
-    transform: scaleX(1);
-}
+/* Mobil versiya uchun stillar */
+@media (max-width: 768px) {
+    .header {
+        padding: 2rem 3%;
+    }
 
-.project-menu a::before {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: .2rem;
-    background: var(--main-color);
-    transition: .3s ease;
+    #menu-icon {
+        display: block !important;
+        color: #fff;
+        font-size: 2.5rem;
+        order: -1;
+        z-index: 101;
+        cursor: pointer;
+    }
+
+    .nav {
+        position: fixed;
+        top: 0;
+        left: -50%;
+        width: 50%;
+        height: 100vh;
+        padding: 6rem 2rem 2rem;
+        background: #031540;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        transition: .25s ease;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+
+    .nav.active {
+        left: 0;
+    }
+
+    .nav a {
+        display: block;
+        font-size: 2rem;
+        padding: 1rem 0;
+        color: #fff;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav a:last-child {
+        border-bottom: none;
+    }
 }
 
 /* Loyihalar bo'limi */
@@ -261,41 +273,9 @@ body {
     }
 }
 
-@media (max-width: 768px) {
-    .project-nav {
-        padding: 2rem 3%;
-    }
-
-    .project-menu {
-        gap: 2rem;
-    }
-
-    .project-menu a {
-        font-size: 1.6rem;
-    }
-
-    .projects-title {
-        font-size: 4.5rem;
-    }
-
-    .project-links {
-        flex-direction: column;
-        gap: 1.5rem;
-        align-items: center;
-    }
-}
-
 @media (max-width: 450px) {
     html {
         font-size: 50%;
-    }
-
-    .project-menu {
-        gap: 1.5rem;
-    }
-
-    .project-menu a {
-        font-size: 1.5rem;
     }
 }
 

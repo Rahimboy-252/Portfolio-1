@@ -72,4 +72,32 @@ window.onscroll = () => {
         nav.classList.remove('active');
         blurOverlay.classList.remove('active');
     }
-}; 
+};
+
+function sendEmail(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const message = document.getElementById('message').value;
+
+    // EmailJS sozlamalari
+    emailjs.init("YOUR_USER_ID"); // EmailJS dan olingan USER_ID
+
+    const templateParams = {
+        from_name: name,
+        from_email: email,
+        phone_number: phone,
+        message: message,
+        to_email: "crazzyfrank06052@gmail.com" // Qabul qiluvchi email
+    };
+
+    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+        .then(function(response) {
+            alert("Xabar muvaffaqiyatli yuborildi!");
+            document.getElementById('contactForm').reset();
+        }, function(error) {
+            alert("Xatolik yuz berdi: " + error);
+        });
+} 

@@ -14,13 +14,13 @@
 </head>
 <body>
     <header class="header">
-        <a href="#" class="logo">U. Rahimboy</a>
+        <a href="#" class="logo" style="color: #fff;">U. Rahimboy</a>
         <i class='bx bx-menu' id="menu-icon"></i>
         <nav class="nav">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="projects.html">Projects</a>
-            <a href="contact.html" class="active">Contact</a>
+            <a href="index.html">Bosh sahifa</a>
+            <a href="about.html">Men haqimda</a>
+            <a href="projects.html">Loyihalar</a>
+            <a href="contact.html" class="active">Bog'lanish</a>
         </nav>
     </header>
 
@@ -59,18 +59,18 @@
                 </div>
             </div>
 
-            <form class="contact-form">
+            <form class="contact-form" id="contactForm" onsubmit="sendEmail(event)">
                 <div class="input-box">
-                    <input type="text" placeholder="To'liq ism" required>
+                    <input type="text" id="name" placeholder="To'liq ism" required>
                 </div>
                 <div class="input-box">
-                    <input type="email" placeholder="Email manzil" required>
+                    <input type="email" id="email" placeholder="Email manzil" required>
                 </div>
                 <div class="input-box">
-                    <input type="text" placeholder="Telefon raqam" required>
+                    <input type="text" id="phone" placeholder="Telefon raqam" required>
                 </div>
                 <div class="input-box">
-                    <textarea placeholder="Xabaringiz" required></textarea>
+                    <textarea id="message" placeholder="Xabaringiz" required></textarea>
                 </div>
                 <button type="submit" class="btn">Yuborish</button>
             </form>
@@ -78,6 +78,38 @@
     </section>
 
     <!-- Body tegi yopilishidan oldin JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("public_key");
+        })();
+
+        function sendEmail(e) {
+            e.preventDefault();
+
+            emailjs.send(
+                'service_id',
+                'template_id',
+                {
+                    from_name: document.getElementById('name').value,
+                    email_id: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    message: document.getElementById('message').value
+                }
+            )
+            .then(
+                function(response) {
+                    console.log("SUCCESS", response);
+                    alert('Xabar muvaffaqiyatli yuborildi!');
+                    document.getElementById('contactForm').reset();
+                }, 
+                function(error) {
+                    console.log("FAILED", error);
+                    alert('Xatolik yuz berdi: ' + JSON.stringify(error));
+                }
+            );
+        }
+    </script>
     <script src="script.js"></script>
 </body>
 </html> 
